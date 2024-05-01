@@ -45,7 +45,7 @@ const mongoOptions = {
 
 // Connect to MongoDB
 const connectWithRetry = () => {
-  mongoose.connect('mongodb://localhost:27017/AT', mongoOptions)
+  mongoose.connect('mongodb://localhost:27017/AT')
     .then(() => {
       console.log('MongoDB connected successfully');
     })
@@ -66,22 +66,22 @@ mongoose.connection.on('error', (error) => {
   console.error('MongoDB connection error:', error);
 });
 
-// Handle unhandled promise rejections
-process.on('unhandledRejection', (error) => {
-  console.error('Unhandled Promise Rejection:', error);
-});
+// // Handle unhandled promise rejections
+// process.on('unhandledRejection', (error) => {
+//   console.error('Unhandled Promise Rejection:', error);
+// });
 
-// Handle application termination
-process.on('SIGINT', async () => {
-  try {
-    await mongoose.connection.close();
-    console.log('MongoDB connection closed');
-    process.exit(0);
-  } catch (error) {
-    console.error('Error closing MongoDB connection:', error);
-    process.exit(1);
-  }
-});
+// // Handle application termination
+// process.on('SIGINT', async () => {
+//   try {
+//     await mongoose.connection.close();
+//     console.log('MongoDB connection closed');
+//     process.exit(0);
+//   } catch (error) {
+//     console.error('Error closing MongoDB connection:', error);
+//     process.exit(1);
+//   }
+// });
 
 
 
